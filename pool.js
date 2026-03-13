@@ -7,10 +7,10 @@ const pool = new Pool({
     : false,
 });
 
-// Set the schema for this pool connection
-pool.query('SET search_path TO clubhouse, public')
-  .then(() => console.log('Schema search_path set to clubhouse'))
-  .catch(err => console.error('Error setting search_path', err));
-
+// Set the schema for this pool connection, This ensures every new connection automatically uses the clubhouse schema.
+pool.on('connect', async (client) => {
+  await client.query(`SET search_path TO clubhouse, public`);
+  console.log('Schema search_path set for new connection');
+});
   
 module.exports = pool;
