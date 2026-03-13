@@ -1,0 +1,152 @@
+body{
+    color: brown;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ccc;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  padding: 5px 10px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #005fa3;
+}
+
+.member-form input {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.admin-badge {
+  font-weight: bold;
+  color: red;
+}
+
+/* Messages */
+.messages-container {
+  max-width: 800px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.message-title {
+  margin-bottom: 10px;
+}
+
+.message-text {
+  margin-bottom: 10px;
+}
+
+.message-meta {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.delete-form {
+  display: inline;
+}
+
+.delete-btn {
+  background-color: #cc0000;
+}
+
+.delete-btn:hover {
+  background-color: #990000;
+}
+
+/* Form Pages (same as signup/login) */
+.form-page {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.form-card {
+  width: 500px;
+  border: 1px solid #ccc;
+  padding: 25px;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.form-card h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.form-group small {
+  margin-top: 2px;
+  color: #555;
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+textarea {
+  resize: vertical;  
+  min-height: 150px; 
+  max-height: 500px;      
+  line-height: 1.4;
+  padding: 10px;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clubhouse - Create Post</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1 class="logo">Clubhouse</h1>
+    <div class="nav-buttons">
+      <a href="/" class="btn">Home</a>
+      <a href="/posts" class="btn">All Posts</a>
+    </div>
+  </header>
+
+  <main class="form-page">
+
+    <div class="form-card">
+
+      <h2>Create a New Post</h2>
+
+
+      <!-- Error messages -->
+      <%- include('../partials/errors', { errors: errors }) %>
+
+      <form action="/posts/submit" method="POST">
+
+        <div class="form-group">
+          <label for="title">Message Title</label>
+          <input 
+            type="text"
+            id="title"
+            name="title"
+            maxlength="100"
+            placeholder="Message Title"
+            value="<%= data?.title || '' %>"
+            required>
+          <small id="titleCount">0 / 100</small>
+        </div>
+
+        <div class="form-group">
+          <label for="text">Message</label>
+          <textarea 
+            id="text"
+            name="text"
+            maxlength="2000"
+            placeholder="Write your message here..."
+            required><%= data?.text || '' %></textarea>
+          <small id="textCount">0 / 2000</small>
+        </div>
+
+        <button type="submit" class="btn form-btn">Post Message</button>
+
+      </form>
+
+    </div>
+
+  </main>
+
+  <!-- Live counter script -->
+  <script>
+    const titleInput = document.getElementById('title');
+    const titleCount = document.getElementById('titleCount');
+    titleCount.textContent = `${titleInput.value.length} / 100`;
+
+    titleInput.addEventListener('input', () => {
+      titleCount.textContent = `${titleInput.value.length} / 100`;
+    });
+
+    const textInput = document.getElementById('text');
+    const textCount = document.getElementById('textCount');
+    textCount.textContent = `${textInput.value.length} / 2000`;
+
+    textInput.addEventListener('input', () => {
+      textCount.textContent = `${textInput.value.length} / 2000`;
+    });
+  </script>
+
+</body>
+</html>

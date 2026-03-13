@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clubhouse - Sign Up</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1 class="logo">Clubhouse</h1>
+    <div class="nav-buttons">
+      <a href="/" class="btn">Home</a>
+      <a href="/users/login" class="btn">Sign In</a>
+    </div>
+  </header>
+
+  <main class="form-page">
+
+    <div class="form-card">
+
+      <h2>Create an Account</h2>
+
+      <%- include('../partials/errors', { errors: errors }) %>
+
+      <form action="/users/submit" method="POST">
+
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input 
+          type="text"
+          id="firstName"
+          name="firstName"
+          placeholder="First Name"
+          value="<%= oldInput?.firstName || '' %>"
+          required>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input 
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder="Last Name"
+          value="<%= oldInput?.lastName || '' %>"
+          required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          value="<%= oldInput?.email || '' %>"
+          required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input 
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          required>
+        </div>
+
+        <button type="submit" class="btn form-btn">Sign Up</button>
+
+      </form>
+
+      <p class="form-footer">
+        Already have an account?
+        <a href="/users/login">Sign In</a>
+      </p>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

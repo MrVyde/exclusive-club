@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clubhouse</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1 class="logo">Clubhouse</h1>
+    <div class="nav-buttons">
+      <% if (!currentUser) { %>
+        <a href="/users/login" class="btn">Sign In</a>
+        <a href="/users/new" class="btn">Sign Up</a>
+      <% } else { %>
+        <span class="welcome">Welcome, <%= currentUser.first_name %>!</span>
+
+        <% if (!currentUser.is_member) { %>
+          <form id="memberForm" class="member-form">
+            <input type="text" name="passcode" placeholder="Member Passcode" required>
+            <button type="submit" class="btn">Become a Member</button>
+          </form>
+        <% } %>
+
+        <% if (currentUser.is_admin) { %>
+          <span class="admin-badge">Admin</span>
+        <% } %>
+
+        <a href="/posts/new" class="btn">Create Post</a>
+      <% } %>
+    </div>
+  </header>
+
+  <!-- Messages -->
+  <main class="messages-container">
+    <% messages.forEach(message => { %>
+      <div class="message-card">
+        <h3 class="message-title"><%= message.title %></h3>
+        <p class="message-text"><%= message.text %></p>
+
+        <% if (currentUser && currentUser.is_member) { %>
+          <small class="message-meta">
+            Author: <%= message.author %> | <%= new Date(message.created_at).toLocaleString() %>
+          </small>
+        <% } %>
+
+        <% if (currentUser && currentUser.is_admin) { %>
+          <form action="/posts/delete/<%= message.id %>" method="POST" class="delete-form">
+            <button type="submit" class="btn delete-btn">Delete</button>
+          </form>
+        <% } %>
+      </div>
+    <% }) %>
+  </main>
+
+   <!-- Join Club JS (alert-style) -->
+    <script>
+      const memberForm = document.getElementById('memberForm');
+      if (memberForm) {
+        memberForm.addEventListener('submit', async (e) => {
+          e.preventDefault(); // prevent page reload
+
+          const passcode = memberForm.passcode.value;
+
+          const res = await fetch('/users/join', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ passcode })
+          });
+
+          const data = await res.json();
+
+          alert(data.message);
+
+          if (data.success) {
+            window.location.reload(); // reload to show updated membership
+          } else {
+            memberForm.passcode.value = '';
+            memberForm.passcode.focus();
+          }
+        });
+      }
+  </script>
+</body>
+</html>

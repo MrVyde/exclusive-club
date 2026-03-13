@@ -1,0 +1,8 @@
+function ensureAdmin(req, res, next) {
+  if (req.user && req.user.is_admin) {
+    return next();
+  }
+  res.status(403).send("Forbidden: Admins only");
+}
+
+module.exports = { ensureAdmin };
