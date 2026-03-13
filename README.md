@@ -2,7 +2,7 @@
 
 A members-only social platform for creating, viewing, and managing posts. Admins can delete posts, and members have exclusive access to content.
 
-**Live Demo:** [Your Deployment Link Here](#)
+**Live Demo:** [View Exclusive-club on Render](https://exclusive-club.onrender.com)
 
 ## Features
 
